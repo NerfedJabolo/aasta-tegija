@@ -6,18 +6,9 @@ function dragElement(elmnt) {
     pos2 = 0,
     pos3 = 0,
     pos4 = 0;
-  if (
-    document.getElementsByClassName(elmnt.classList.item(0) + 'header').length >
-    0
-  ) {
-    // if present, the header is where you move the DIV from:
-    document.getElementsByClassName(
-      elmnt.classList.item(0) + 'header'
-    )[0].onmousedown = dragMouseDown;
-  } else {
-    // otherwise, move the DIV from anywhere inside the DIV:
-    elmnt.onmousedown = dragMouseDown;
-  }
+  var fileHeader = elmnt.getElementsByClassName('fileheader')[0];
+
+  fileHeader.onmousedown = dragMouseDown;
 
   function dragMouseDown(e) {
     e = e || window.event;
@@ -39,8 +30,17 @@ function dragElement(elmnt) {
     pos3 = e.clientX;
     pos4 = e.clientY;
     // set the element's new position:
-    elmnt.style.top = elmnt.offsetTop - pos2 + 'px';
-    elmnt.style.left = elmnt.offsetLeft - pos1 + 'px';
+    var newX = elmnt.offsetLeft - pos1;
+    var newY = elmnt.offsetTop - pos2;
+    if (
+      newX > 0 &&
+      newY > 0 &&
+      newX + elmnt.offsetWidth < window.innerWidth &&
+      newY + elmnt.offsetHeight < window.innerHeight
+    ) {
+      elmnt.style.left = newX + 'px';
+      elmnt.style.top = newY + 'px';
+    }
   }
 
   function closeDragElement() {
