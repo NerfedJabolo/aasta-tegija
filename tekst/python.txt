@@ -1,0 +1,12 @@
+# Tere tulemast Pythonisse!
+
+# Python on populaarne programmeerimiskeel, mis on lihtne ja loogiline ning seetõttu ka väga õppimis- ja kasutajasõbralik.
+Selles keeles on võimalik kirjutada erinevaid programme - alates väikestest skriptidest kuni suurte rakendusteni.
+
+# Read mille alguses on # on kommentaarid ja neid ei arvestata selles programmeerimiskeeles.
+
+# Alustuseks kirjutame ekraanile tervituse.
+# Selleks kasutame funktsiooni print.
+{blue-fg}print{/blue-fg}({green-fg}"Tere tulemast Pythonisse!"{/green-fg})
+
+# Et koodi jooksutada, vajuta Ctrl + enter.
