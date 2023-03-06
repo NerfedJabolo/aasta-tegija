@@ -9,11 +9,14 @@
   </head>
   <body>
     <div class="bg">
-      <div class="file">
-        <div class="fileheader"></div>
-        <img src="./imgs/txt_file.png" alt="" />
-        <p>File name</p>
-      </div>
+      <% for (var i = 0; i < files.length; i++) { %>
+        <div class="file" id="<%= files[i].name %>">
+          <div class="fileheader"></div>
+          <img src="./imgs/<%= files[i].type %>_file.png" alt="" />
+          <p><%= files[i].name %></p>
+        </div>
+        <% } %>
+      
     </div>
     <script src="/js/script.js"></script>
 

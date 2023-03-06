@@ -1,18 +1,18 @@
-function dragElement(elmnt) {
+function dragElement(id) {
 	let pos1 = 0;
 	let pos2 = 0;
 	let pos3 = 0;
 	let pos4 = 0;
-	const file = elmnt[0]; // get the file element
+	const file = document.getElementById(id); // get the file element
 	const fileHeader = file.querySelector('.fileheader'); // get the fileheader element
 	let fileBackgroundColor = ''; // variable to store the file border color
 
 	console.log(file.classList.item(0));
 
-	if (document.querySelector('.' + file.classList.item(0) + 'header')) {
+	if (document.querySelector('#' + id + ' .fileheader')) {
 		// if present, the header is where you move the DIV from:
 		document.querySelector(
-			'.' + file.classList.item(0) + 'header',
+			'#' + id + ' .fileheader',
 		).onmousedown = dragMouseDown;
 	} else {
 		// otherwise, move the DIV from anywhere inside the DIV:
@@ -71,5 +71,8 @@ function dragElement(elmnt) {
 	}
 }
 
-// Make the file element draggable:
-dragElement(document.getElementsByClassName('file'));
+// Make the file elements draggable:
+const files = document.getElementsByClassName('file');
+for (let i = 0; i < files.length; i++) {
+	dragElement(files[i].id);
+}
