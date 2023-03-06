@@ -21,7 +21,7 @@ const computer = blessed.text({
 	top: 3,
 	left: 30,
 	width: '100%',
-	content: fs.readFileSync('./ascii_images/computer.txt', 'utf8'),
+	content: fs.readFileSync('./dist/ascii_images/computer.txt', 'utf8'),
 
 });
 const coding_file = blessed.text({
@@ -31,7 +31,7 @@ const coding_file = blessed.text({
 	width: '8%',
 	height: '28%',
 	draggable: true,
-	content: fs.readFileSync('./ascii_images/file.txt', 'utf8'),
+	content: fs.readFileSync('./dist/ascii_images/file.txt', 'utf8'),
 
 });
 
@@ -44,13 +44,13 @@ const tutorial_file = blessed.text({
 	draggable: true,
 	clickable: true,
 	input: true,
-	content: fs.readFileSync('./ascii_images/tut.txt', 'utf8'),
+	content: fs.readFileSync('./dist/ascii_images/tut.txt', 'utf8'),
 });
 const desktop_view = blessed.text({
 	screen,
 	top: 1,
 	left: 104,
-	content: fs.readFileSync('./ascii_images/desktop.txt', 'utf8'),
+	content: fs.readFileSync('./dist/ascii_images/desktop.txt', 'utf8'),
 });
 screen.append(computer);
 
@@ -140,7 +140,7 @@ coding_file.on('click', function(data) {
 		border: {
 			type: 'line',
 		},
-		content: fs.readFileSync('./tekst/python.txt', 'utf8') || 'eMpty',
+		content: fs.readFileSync('./dist/tekst/python.txt', 'utf8') || 'eMpty',
 	});
 	// coding_file_content.focus()
 	// coding_file_content.setContent(fs.readFileSync('./tekst/python.txt', 'utf8') || "eMpty")

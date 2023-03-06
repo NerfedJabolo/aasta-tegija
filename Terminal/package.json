@@ -1,11 +1,11 @@
 {
-  "name": "Programming_tut_game",
+  "name": "programming_tut_game",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "license": "MIT",
   "scripts": {
-    "start": "yarn run tsup src/* && node .",
-    "build": "yarn install && yarn run tsup src/*",
+    "start": "yarn run build && node .",
+    "build": "yarn run tsc && cp -r src/ascii_images src/tekst dist/",
     "lint:fix": "yarn run eslint --fix .",
     "lint:": "yarn run eslint ."
   },
