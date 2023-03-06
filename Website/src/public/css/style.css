@@ -11,7 +11,7 @@ html {
 
 .bg {
   /* The image used */
-  background-image: url('./imgs/VOCOS.webp');
+  background-image: url('/imgs/VOCOS.webp');
 
   /* Full height */
   height: 100%;
