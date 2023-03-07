@@ -88,7 +88,7 @@ for (let i = 0; i < files.length; i++) {
 
 function openWindow(name, content) {
 	const htmlOfTerminal = `
-	<div class="terminal" style="display:none">
+	<div class="terminal" id="terminalWindow" style="display:none">
 	<div class="appheader">
 	<div class="terminalheader"></div>
 	  <p class="title">Terminal</p>
@@ -100,9 +100,12 @@ function openWindow(name, content) {
   <span>$</span> <input type="text" class="input" placeholder="Enter command...">
 	`;
 	switch (name) {
-	case 'terminal':
+	case 'terminal': {
 		$('.bg').append(htmlOfTerminal);
 		$('.terminal').fadeIn(200);
+		const terminal = document.getElementById('terminalWindow');
+		terminal.style.display = 'block';
+		dragWindow(terminal.id, '.appheader');
 		$('#close').on('click', () => {
 			$('.terminal').fadeOut(200);
 			setTimeout(() => {
@@ -114,8 +117,43 @@ function openWindow(name, content) {
 		});
 		break;
 	}
+	}
 }
 
 function changeWindowState() {
 
+}
+
+function dragWindow(elementId, handleId) {
+	let pos1 = 0; let pos2 = 0;
+	let pos3 = 0; let pos4 = 0;
+	const handle = document.querySelector(handleId);
+	const element = document.getElementById(elementId);
+
+	handle.onmousedown = dragMouseDown;
+
+	function dragMouseDown(e) {
+	  e = e || window.event;
+	  e.preventDefault();
+	  pos3 = e.clientX;
+	  pos4 = e.clientY;
+	  document.onmouseup = closeDragElement;
+	  document.onmousemove = elementDrag;
+	}
+
+	function elementDrag(e) {
+	  e = e || window.event;
+	  e.preventDefault();
+	  pos1 = pos3 - e.clientX;
+	  pos2 = pos4 - e.clientY;
+	  pos3 = e.clientX;
+	  pos4 = e.clientY;
+	  element.style.top = (element.offsetTop - pos2) + 'px';
+	  element.style.left = (element.offsetLeft - pos1) + 'px';
+	}
+
+	function closeDragElement() {
+	  document.onmouseup = null;
+	  document.onmousemove = null;
+	}
 }
