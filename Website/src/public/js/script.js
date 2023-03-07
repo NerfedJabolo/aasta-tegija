@@ -115,20 +115,20 @@ function openWindow(name, content) {
 				$(`#${id}`).remove();
 			}, 200);
 		});
-		$(`#${id}.max_min`).on('click', () => {
+		$(`#${id}\\ max_min`).on('click', () => {
 			console.log('maximize');
-			if ($(`.${uniqueClass}`).hasClass('maximized')) {
-				$(`.${uniqueClass}`).removeClass('maximized');
-				$(`#${id}-max_min img`).attr('src', '/imgs/window-maximize.svg');
-				$(`.${uniqueClass}`).css({
+			if ($(`#${id}`).hasClass('maximized')) {
+				$(`#${id}`).removeClass('maximized');
+				$(`#${id}\\ max_min img`).attr('src', '/imgs/window-maximize.svg');
+				$(`#${id}`).css({
 					top: '50%',
 					left: '50%',
 					transform: 'translate(-50%, -50%)',
 				});
 			} else {
-				$(`.${uniqueClass}`).addClass('maximized');
-				$(`#${id}-max_min img`).attr('src', '/imgs/window-restore.svg');
-				$(`.${uniqueClass}`).css({
+				$(`#${id}`).addClass('maximized');
+				$(`#${id}\\ max_min img`).attr('src', '/imgs/window-restore.svg');
+				$(`#${id}`).css({
 					top: 0,
 					left: 0,
 					transform: 'none',
