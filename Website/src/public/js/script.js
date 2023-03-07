@@ -87,7 +87,9 @@ for (let i = 0; i < files.length; i++) {
 }
 
 function openWindow(name, content) {
-	const htmlOfTerminal = `
+	switch (name) {
+	case 'terminal': {
+		const htmlOfTerminal = `
 	<div class="terminal" id="terminalWindow" style="display:none">
 	<div class="appheader">
 	<div class="terminalheader"></div>
@@ -99,13 +101,12 @@ function openWindow(name, content) {
   </div>
   <span>$</span> <input type="text" class="input" placeholder="Enter command...">
 	`;
-	switch (name) {
-	case 'terminal': {
 		$('.bg').append(htmlOfTerminal);
 		$('.terminal').fadeIn(200);
 		const terminal = document.getElementById('terminalWindow');
 		terminal.style.display = 'block';
 		dragWindow(terminal.id, '.appheader');
+		
 		$('#close').on('click', () => {
 			$('.terminal').fadeOut(200);
 			setTimeout(() => {
@@ -116,6 +117,31 @@ function openWindow(name, content) {
 			$('.terminal').toggleClass('maximized');
 		});
 		break;
+	}
+	case 'õpetus': {
+		const htmlOfTxt = `
+		<div class="app" id="txtWindow" style="display:none">
+		<div class="appheader">
+		<div class="terminalheader"></div>
+		  <p class="title">õpetus.txt</p>
+		  <div class="buttons">
+			<div class="button" id="max_min"><img src="/imgs/window-maximize.svg" alt=""></div>
+			<div class="button" id="close"><img src="/imgs/x-thin.svg" alt=""></div>
+		</div>
+	  </div>
+	  <input type="text" class="input">${content}</input>
+		`;
+		$('.bg').append(htmlOfTxt);
+		$('.terminal').fadeIn(200);
+		const txt = document.getElementById('txtWindow');
+		txt.style.display = 'block';
+		dragWindow(txt.id, '.appheader');
+		$('#close').on('click', () => {
+			$('.terminal').fadeOut(200);
+			setTimeout(() => {
+				$('.terminal').remove();
+			}, 200);
+		});
 	}
 	}
 }
@@ -133,27 +159,27 @@ function dragWindow(elementId, handleId) {
 	handle.onmousedown = dragMouseDown;
 
 	function dragMouseDown(e) {
-	  e = e || window.event;
-	  e.preventDefault();
-	  pos3 = e.clientX;
-	  pos4 = e.clientY;
-	  document.onmouseup = closeDragElement;
-	  document.onmousemove = elementDrag;
+		e = e || window.event;
+		e.preventDefault();
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		document.onmouseup = closeDragElement;
+		document.onmousemove = elementDrag;
 	}
 
 	function elementDrag(e) {
-	  e = e || window.event;
-	  e.preventDefault();
-	  pos1 = pos3 - e.clientX;
-	  pos2 = pos4 - e.clientY;
-	  pos3 = e.clientX;
-	  pos4 = e.clientY;
-	  element.style.top = (element.offsetTop - pos2) + 'px';
-	  element.style.left = (element.offsetLeft - pos1) + 'px';
+		e = e || window.event;
+		e.preventDefault();
+		pos1 = pos3 - e.clientX;
+		pos2 = pos4 - e.clientY;
+		pos3 = e.clientX;
+		pos4 = e.clientY;
+		element.style.top = (element.offsetTop - pos2) + 'px';
+		element.style.left = (element.offsetLeft - pos1) + 'px';
 	}
 
 	function closeDragElement() {
-	  document.onmouseup = null;
-	  document.onmousemove = null;
+		document.onmouseup = null;
+		document.onmousemove = null;
 	}
 }

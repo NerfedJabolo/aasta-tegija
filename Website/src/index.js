@@ -16,12 +16,10 @@ const files = [
 	{
 		name: 'python',
 		type: 'py',
-		content: 'This is the content of file2',
 	},
 	{
 		name: 'terminal',
 		type: 'terminal',
-		content: 'This is the content of file3',
 	},
 ];
 
