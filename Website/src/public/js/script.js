@@ -98,37 +98,37 @@ function openWindow(name, content) {
 	  <p class="title">Terminal</p>
 	  <div class="buttons">
 		<div class="button" id="${id} max_min"><img src="/imgs/window-maximize.svg" alt=""></div>
-		<div class="button" id="close"><img src="/imgs/x-thin.svg" alt=""></div>
+		<div class="button" id="${id} close"><img src="/imgs/x-thin.svg" alt=""></div>
 	</div>
   </div>
   <span>$</span> <input type="text" class="input" placeholder="Enter command...">
 	`;
 
 		$('.bg').append(htmlOfTerminal);
-		$(`.terminal ${uniqueClass}`).fadeIn(200);
+		$(`#${id}`).fadeIn(200);
 		const terminal = document.getElementById(id);
 		terminal.style.display = 'block';
 		dragWindow(terminal.id, `.${id}`);
-		$('#close').on('click', () => {
-			$(`.terminal ${uniqueClass}`).fadeOut(200);
+		$(`#${id}\\ close`).on('click', () => {
+			$(`#${id}`).fadeOut(200);
 			setTimeout(() => {
-				$(`.terminal ${uniqueClass}`).remove();
+				$(`#${id}`).remove();
 			}, 200);
 		});
-		$(`#${id} max_min`).on('click', () => {
-			console.log('maximize')
-			if ($(`.terminal ${uniqueClass}`).hasClass('maximized')) {
-				$(`.terminal ${uniqueClass}`).removeClass('maximized');
-				$('#max_min img').attr('src', '/imgs/window-maximize.svg');
-				$(`.terminal ${uniqueClass}`).css({
+		$(`#${id}.max_min`).on('click', () => {
+			console.log('maximize');
+			if ($(`.${uniqueClass}`).hasClass('maximized')) {
+				$(`.${uniqueClass}`).removeClass('maximized');
+				$(`#${id}-max_min img`).attr('src', '/imgs/window-maximize.svg');
+				$(`.${uniqueClass}`).css({
 					top: '50%',
 					left: '50%',
 					transform: 'translate(-50%, -50%)',
 				});
 			} else {
-				$(`.terminal ${uniqueClass}`).addClass('maximized');
-				$('#max_min img').attr('src', '/imgs/window-restore.svg');
-				$(`.terminal ${uniqueClass}`).css({
+				$(`.${uniqueClass}`).addClass('maximized');
+				$(`#${id}-max_min img`).attr('src', '/imgs/window-restore.svg');
+				$(`.${uniqueClass}`).css({
 					top: 0,
 					left: 0,
 					transform: 'none',
