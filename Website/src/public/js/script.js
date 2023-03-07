@@ -80,7 +80,7 @@ const files = document.getElementsByClassName('file');
 for (let i = 0; i < files.length; i++) {
 	const file = files[i];
 	if (i !== 0) {
-		file.style.top = 88 * i + 'px';
+		file.style.top = 70 * i + 'px';
 	}
 	dragElement(file.id);
 }

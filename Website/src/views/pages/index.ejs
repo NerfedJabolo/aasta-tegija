@@ -17,11 +17,16 @@
           <img src="./imgs/<%= files[i].type %>_file.svg" alt="" />
           <p><%= files[i].name %></p>
         </div>
-          <div class="terminal">
-            <div class="appheader"></div>
-            <span>$</span> <input type="text" class="input" placeholder="Enter command...">
-          </div>
         <% } %>
+        <div class="terminal">
+          <div class="appheader">
+            <p class="title">Terminal</p>
+            <div class="buttons">
+              <div class="button" onclick="changeWindowState('terminal')"><img src="/imgs/window-maximize.svg" alt=""></div>
+              <div class="button" onclick="closeWindow('terminal')"><img src="/imgs/x-thin.svg" alt=""></div>
+          </div>
+        </div>
+        <span>$</span> <input type="text" class="input" placeholder="Enter command...">
     </div>
     <script src="/js/script.js">
     </script>

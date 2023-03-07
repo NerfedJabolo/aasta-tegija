@@ -66,6 +66,9 @@ html {
 }
 
 .appheader {
+  position: absolute;
+  font-family: monospace;
+  font-size: 18px;
   background-color: #fff;
   height: 30px;
   width: 100%;
@@ -76,6 +79,8 @@ html {
 }
 
 .input {
+  top: 20px;
+  position: relative;
   display: block;
   background-color: transparent;
   border: none;
@@ -87,4 +92,25 @@ html {
 
 .input:focus {
   outline: none;
+}
+
+.buttons {
+  height: 30px;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.button {
+  height: 30px;
+  width: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.button img {
+  width: 20px;
 }
