@@ -114,6 +114,11 @@ function openWindow(name, content) {
 			}, 200);
 		});
 		$('#max_min').on('click', () => {
+			$('.terminal').css({
+				top: '50%',
+				left: '50%',
+				transform: 'translate(-50%, -50%)',
+			});
 			$('.terminal').toggleClass('maximized');
 		});
 		break;
