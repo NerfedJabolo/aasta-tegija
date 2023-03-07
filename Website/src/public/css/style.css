@@ -53,8 +53,6 @@ html {
 }
 
 .terminal {
-  resize: both;
-  overflow: auto;
   background-color: rgb(75, 75, 75);
   height: 500px;
   width: 700px;

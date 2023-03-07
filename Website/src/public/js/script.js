@@ -106,7 +106,6 @@ function openWindow(name, content) {
 		const terminal = document.getElementById('terminalWindow');
 		terminal.style.display = 'block';
 		dragWindow(terminal.id, '.appheader');
-		
 		$('#close').on('click', () => {
 			$('.terminal').fadeOut(200);
 			setTimeout(() => {
