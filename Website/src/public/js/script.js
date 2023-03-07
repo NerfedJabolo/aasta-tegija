@@ -83,3 +83,7 @@ for (let i = 0; i < files.length; i++) {
 	}
 	dragElement(file.id);
 }
+
+function openWindow(content) {
+	alert(content);
+}

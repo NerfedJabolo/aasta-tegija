@@ -11,7 +11,8 @@
   <body>
     <div class="bg">
       <% for (var i = 0; i < files.length; i++) { %>
-        <div class="file" id="<%= files[i].name %>">
+        <!-- WIP -->
+        <div ondblclick="openWindow('<%= files[i].content %>')" class="file" id="<%= files[i].name %>">
           <div class="fileheader"></div>
           <img src="./imgs/<%= files[i].type %>_file.png" alt="" />
           <p><%= files[i].name %></p>
