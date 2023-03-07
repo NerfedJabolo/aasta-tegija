@@ -158,12 +158,23 @@ function openWindow(name, content) {
 			}, 200);
 		});
 		$('#max_min').on('click', () => {
-			$('.app').css({
-				top: '50%',
-				left: '50%',
-				transform: 'translate(-50%, -50%)',
-			});
-			$('.app').toggleClass('maximized');
+			if ($('.app').hasClass('maximized')) {
+				$('.app').removeClass('maximized');
+				$('#max_min img').attr('src', '/imgs/window-maximize.svg');
+				$('.app').css({
+					top: '50%',
+					left: '50%',
+					transform: 'translate(-50%, -50%)',
+				});
+			} else {
+				$('.app').addClass('maximized');
+				$('#max_min img').attr('src', '/imgs/window-restore.svg');
+				$('.app').css({
+					top: 0,
+					left: 0,
+					transform: 'none',
+				});
+			}
 		});
 	}
 	}
