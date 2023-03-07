@@ -63,6 +63,7 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 4;
 }
 
 .terminalheader {
@@ -89,10 +90,16 @@ html {
   display: flex;
   flex-direction: column;
   align-items: center;
+  z-index: 4;
 }
 
 .terminal .title,
 .terminal .button {
+  z-index: 3;
+}
+
+.app .title,
+.app .button {
   z-index: 3;
 }
 
@@ -153,5 +160,4 @@ html {
   top: 0;
   left: 0;
   transform: translate(0, 0);
-  z-index: 4;
 }
