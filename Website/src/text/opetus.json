@@ -5,10 +5,13 @@
   },
   {
     "title": "WIP1",
-    "content": "WIP1"
+    "content": "Prindi \"Tere maailm!\"",
+    "vastus": "Tere maailm!"
   },
   {
     "title": "WIP2",
-    "content": "WIP2"
+    "content": "WIP2",
+    "vastus": ""
+
   }
 ]

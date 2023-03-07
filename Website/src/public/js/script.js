@@ -166,11 +166,15 @@ function openWindow(name) {
 		<div class="button" id="${id} close"><img src="/imgs/x-thin.svg" alt=""></div>
 	</div>
   </div>
-  <span>$</span> 
-  ${tutorialPage ? `<p id="${id}" >${firstPageContent}</p>` : `<input id="${id} text" type="text" class="input">${windowFileContent}</input>`}
+  <br>
+  <br> 
+
+  ${tutorialPage ? `<p id="${id}" >${firstPageContent}</p>` : '<iframe src="https://trinket.io/embed/python/6c547a092f" width="100%" height="600" frameborder="0" marginwidth="0" marginheight="0" allowfullscreen></iframe>'}
   
     ${tutorialPage ? `<button id="${id} move_page_button">Edasi</button>` : ''}
   `;
+
+		// .jqconsole > span:nth-child(3) > span:nth-child(1)
 
 		$('.bg').append(htmlOfTerminal);
 		$(`#${id}`).fadeIn(200);
@@ -190,6 +194,7 @@ function openWindow(name) {
 			const res = await fetch(`/api/${i++}`);
 			const data = await res.json();
 			// #GTdzW\ text
+				}
 			$(`#${id} p`).text(data.content);
 			console.log(data);
 		});
