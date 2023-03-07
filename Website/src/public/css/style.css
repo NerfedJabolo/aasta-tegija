@@ -76,6 +76,11 @@ html {
   z-index: 2;
 }
 
+.terminal .title,
+.terminal .button {
+  z-index: 3;
+}
+
 .appheader {
   position: absolute;
   font-family: monospace;
