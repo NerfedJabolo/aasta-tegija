@@ -25,8 +25,7 @@ const files = [
 	},
 ];
 
-
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
 	res.render('pages/index', { files });
 });
 

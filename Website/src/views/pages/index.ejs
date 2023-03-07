@@ -12,13 +12,12 @@
     <div class="bg">
       <% for (var i = 0; i < files.length; i++) { %>
         <!-- WIP -->
-        <div ondblclick="openWindow('<%= files[i].content %>')" class="file" id="<%= files[i].name %>">
+        <div ondblclick="openWindow('<%= files[i].content %>', '<%= files[i].page %>')" class="file" id="<%= files[i].name %>">
           <div class="fileheader"></div>
-          <img src="./imgs/<%= files[i].type %>_file.png" alt="" />
+          <img src="./imgs/<%= files[i].type %>_file.svg" alt="" />
           <p><%= files[i].name %></p>
         </div>
         <% } %>
-      
     </div>
     <script src="/js/script.js"></script>
 

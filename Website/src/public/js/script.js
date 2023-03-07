@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 function dragElement(id) {
 	let pos1 = 0;
 	let pos2 = 0;
@@ -84,6 +85,6 @@ for (let i = 0; i < files.length; i++) {
 	dragElement(file.id);
 }
 
-function openWindow(content) {
-	alert(content);
+function openWindow(content, type) {
+	// TODO
 }
