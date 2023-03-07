@@ -90,6 +90,7 @@ function openWindow(name, content) {
 	const htmlOfTerminal = `
 	<div class="terminal" style="display:none">
 	<div class="appheader">
+	<div class="terminalheader"></div>
 	  <p class="title">Terminal</p>
 	  <div class="buttons">
 		<div class="button" id="max_min"><img src="/imgs/window-maximize.svg" alt=""></div>
