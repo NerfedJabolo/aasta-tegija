@@ -194,7 +194,6 @@ function openWindow(name) {
 			const res = await fetch(`/api/${i++}`);
 			const data = await res.json();
 			// #GTdzW\ text
-				}
 			$(`#${id} p`).text(data.content);
 			console.log(data);
 		});
