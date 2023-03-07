@@ -1,17 +1,20 @@
 const express = require('express');
 const path = require('path');
-
+const fs = require('fs');
 
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
+const data = fs.readFileSync('src/text/opetus.json');
+const json = JSON.parse(data);
+
 
 const files = [
 	{
 		name: 'õpetus',
 		type: 'txt',
-		content: 'This is the content of file1',
+		page: json,
 	},
 	{
 		name: 'python',
@@ -22,6 +25,15 @@ const files = [
 		type: 'terminal',
 	},
 ];
+
+app.get('/api/', (req, res) => {
+	res.json(files[0]);
+});
+
+// Add parameter to /api
+app.get('/api/:page', (req, res) => {
+	res.json(files[0].page[req.params.page]);
+});
 
 app.get('/', (req, res) => {
 	res.render('pages/index', { files });
