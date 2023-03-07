@@ -78,8 +78,6 @@ html {
 }
 
 .app {
-  resize: both;
-  overflow: auto;
   background-color: white;
   height: 500px;
   width: 700px;

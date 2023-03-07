@@ -113,12 +113,23 @@ function openWindow(name, content) {
 			}, 200);
 		});
 		$('#max_min').on('click', () => {
-			$('.terminal').css({
-				top: '50%',
-				left: '50%',
-				transform: 'translate(-50%, -50%)',
-			});
-			$('.terminal').toggleClass('maximized');
+			if ($('.terminal').hasClass('maximized')) {
+				$('.terminal').removeClass('maximized');
+				$('#max_min img').attr('src', '/imgs/window-maximize.svg');
+				$('.terminal').css({
+					top: '50%',
+					left: '50%',
+					transform: 'translate(-50%, -50%)',
+				});
+			} else {
+				$('.terminal').addClass('maximized');
+				$('#max_min img').attr('src', '/imgs/window-restore.svg');
+				$('.terminal').css({
+					top: 0,
+					left: 0,
+					transform: 'none',
+				});
+			}
 		});
 		break;
 	}
@@ -136,15 +147,23 @@ function openWindow(name, content) {
 	  <input type="text" class="input">${content}</input>
 		`;
 		$('.bg').append(htmlOfTxt);
-		$('.terminal').fadeIn(200);
+		$('.app').fadeIn(200);
 		const txt = document.getElementById('txtWindow');
 		txt.style.display = 'block';
 		dragWindow(txt.id, '.appheader');
 		$('#close').on('click', () => {
-			$('.terminal').fadeOut(200);
+			$('.app').fadeOut(200);
 			setTimeout(() => {
-				$('.terminal').remove();
+				$('.app').remove();
 			}, 200);
+		});
+		$('#max_min').on('click', () => {
+			$('.app').css({
+				top: '50%',
+				left: '50%',
+				transform: 'translate(-50%, -50%)',
+			});
+			$('.app').toggleClass('maximized');
 		});
 	}
 	}
