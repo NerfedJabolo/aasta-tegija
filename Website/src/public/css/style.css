@@ -65,6 +65,16 @@ html {
   align-items: center;
 }
 
+.appheader {
+  background-color: #fff;
+  height: 30px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 10px;
+}
+
 .input {
   display: block;
   background-color: transparent;
