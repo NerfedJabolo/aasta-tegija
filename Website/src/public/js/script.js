@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /* eslint-disable no-unused-vars */
 function dragElement(id) {
 	let pos1 = 0;
@@ -85,6 +86,35 @@ for (let i = 0; i < files.length; i++) {
 	dragElement(file.id);
 }
 
-function openWindow(content, type) {
-	// TODO
+function openWindow(name, content) {
+	const htmlOfTerminal = `
+	<div class="terminal" style="display:none">
+	<div class="appheader">
+	  <p class="title">Terminal</p>
+	  <div class="buttons">
+		<div class="button" id="max_min"><img src="/imgs/window-maximize.svg" alt=""></div>
+		<div class="button" id="close"><img src="/imgs/x-thin.svg" alt=""></div>
+	</div>
+  </div>
+  <span>$</span> <input type="text" class="input" placeholder="Enter command...">
+	`;
+	switch (name) {
+	case 'terminal':
+		$('.bg').append(htmlOfTerminal);
+		$('.terminal').fadeIn(200);
+		$('#close').on('click', () => {
+			$('.terminal').fadeOut(200);
+			setTimeout(() => {
+				$('.terminal').remove();
+			}, 200);
+		});
+		$('#max_min').on('click', () => {
+			$('.terminal').toggleClass('maximized');
+		});
+		break;
+	}
+}
+
+function changeWindowState() {
+
 }
