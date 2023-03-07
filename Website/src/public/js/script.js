@@ -89,42 +89,46 @@ for (let i = 0; i < files.length; i++) {
 function openWindow(name, content) {
 	switch (name) {
 	case 'terminal': {
+		const id = randomStringGen();
+		const uniqueClass = 'terminal ' + id;
 		const htmlOfTerminal = `
-	<div class="terminal" id="terminalWindow" style="display:none">
-	<div class="appheader">
+	<div class="${uniqueClass}" id="${id}" style="display:none">
+	<div class="${id} appheader">
 	<div class="terminalheader"></div>
 	  <p class="title">Terminal</p>
 	  <div class="buttons">
-		<div class="button" id="max_min"><img src="/imgs/window-maximize.svg" alt=""></div>
+		<div class="button" id="${id} max_min"><img src="/imgs/window-maximize.svg" alt=""></div>
 		<div class="button" id="close"><img src="/imgs/x-thin.svg" alt=""></div>
 	</div>
   </div>
   <span>$</span> <input type="text" class="input" placeholder="Enter command...">
 	`;
+
 		$('.bg').append(htmlOfTerminal);
-		$('.terminal').fadeIn(200);
-		const terminal = document.getElementById('terminalWindow');
+		$(`.terminal ${uniqueClass}`).fadeIn(200);
+		const terminal = document.getElementById(id);
 		terminal.style.display = 'block';
-		dragWindow(terminal.id, '.appheader');
+		dragWindow(terminal.id, `.${id}`);
 		$('#close').on('click', () => {
-			$('.terminal').fadeOut(200);
+			$(`.terminal ${uniqueClass}`).fadeOut(200);
 			setTimeout(() => {
-				$('.terminal').remove();
+				$(`.terminal ${uniqueClass}`).remove();
 			}, 200);
 		});
-		$('#max_min').on('click', () => {
-			if ($('.terminal').hasClass('maximized')) {
-				$('.terminal').removeClass('maximized');
+		$(`#${id} max_min`).on('click', () => {
+			console.log('maximize')
+			if ($(`.terminal ${uniqueClass}`).hasClass('maximized')) {
+				$(`.terminal ${uniqueClass}`).removeClass('maximized');
 				$('#max_min img').attr('src', '/imgs/window-maximize.svg');
-				$('.terminal').css({
+				$(`.terminal ${uniqueClass}`).css({
 					top: '50%',
 					left: '50%',
 					transform: 'translate(-50%, -50%)',
 				});
 			} else {
-				$('.terminal').addClass('maximized');
+				$(`.terminal ${uniqueClass}`).addClass('maximized');
 				$('#max_min img').attr('src', '/imgs/window-restore.svg');
-				$('.terminal').css({
+				$(`.terminal ${uniqueClass}`).css({
 					top: 0,
 					left: 0,
 					transform: 'none',
@@ -185,6 +189,8 @@ function changeWindowState() {
 }
 
 function dragWindow(elementId, handleId) {
+	console.log(handleId, elementId);
+	let currentWindow = null;
 	let pos1 = 0; let pos2 = 0;
 	let pos3 = 0; let pos4 = 0;
 	const handle = document.querySelector(handleId);
@@ -199,21 +205,41 @@ function dragWindow(elementId, handleId) {
 		pos4 = e.clientY;
 		document.onmouseup = closeDragElement;
 		document.onmousemove = elementDrag;
+
+		// Keep track of the current window being dragged
+		currentWindow = element;
 	}
 
 	function elementDrag(e) {
 		e = e || window.event;
 		e.preventDefault();
-		pos1 = pos3 - e.clientX;
-		pos2 = pos4 - e.clientY;
-		pos3 = e.clientX;
-		pos4 = e.clientY;
-		element.style.top = (element.offsetTop - pos2) + 'px';
-		element.style.left = (element.offsetLeft - pos1) + 'px';
+
+		// Only apply the dragging to the current window
+		if (currentWindow !== null && currentWindow === element) {
+			pos1 = pos3 - e.clientX;
+			pos2 = pos4 - e.clientY;
+			pos3 = e.clientX;
+			pos4 = e.clientY;
+			element.style.top = (element.offsetTop - pos2) + 'px';
+			element.style.left = (element.offsetLeft - pos1) + 'px';
+		}
 	}
 
 	function closeDragElement() {
 		document.onmouseup = null;
 		document.onmousemove = null;
+
+		// Reset the current window being dragged
+		currentWindow = null;
 	}
+}
+
+function randomStringGen() {
+	const length = 5;
+	const charset = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ';
+	let retVal = '';
+	for (let i = 0, n = charset.length; i < length; ++i) {
+		retVal += charset.charAt(Math.floor(Math.random() * n));
+	}
+	return retVal;
 }
