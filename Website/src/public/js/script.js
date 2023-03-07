@@ -3,9 +3,12 @@ function dragElement(id) {
 	let pos2 = 0;
 	let pos3 = 0;
 	let pos4 = 0;
-	const file = document.getElementById(id); // get the file element
-	const fileHeader = file.querySelector('.fileheader'); // get the fileheader element
-	let fileBackgroundColor = ''; // variable to store the file border color
+	// get the file element
+	const file = document.getElementById(id);
+	// get the fileheader element
+	const fileHeader = file.querySelector('.fileheader');
+	// variable to store the file border color
+	let fileBackgroundColor = '';
 
 	console.log(file.classList.item(0));
 
@@ -74,5 +77,9 @@ function dragElement(id) {
 // Make the file elements draggable:
 const files = document.getElementsByClassName('file');
 for (let i = 0; i < files.length; i++) {
-	dragElement(files[i].id);
+	const file = files[i];
+	if (i !== 0) {
+		file.style.top = 88 * i + 'px';
+	}
+	dragElement(file.id);
 }
