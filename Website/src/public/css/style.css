@@ -130,3 +130,13 @@ html {
 .button img {
   width: 20px;
 }
+
+.maximized {
+  height: 100%;
+  width: 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  transform: translate(0, 0);
+  z-index: 4;
+}
