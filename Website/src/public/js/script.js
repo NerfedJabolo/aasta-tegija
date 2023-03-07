@@ -138,42 +138,51 @@ function openWindow(name, content) {
 		break;
 	}
 	case 'õpetus': {
-		const htmlOfTxt = `
-		<div class="app" id="txtWindow" style="display:none">
-		<div class="appheader">
-		<div class="terminalheader"></div>
-		  <p class="title">õpetus.txt</p>
-		  <div class="buttons">
-			<div class="button" id="max_min"><img src="/imgs/window-maximize.svg" alt=""></div>
-			<div class="button" id="close"><img src="/imgs/x-thin.svg" alt=""></div>
-		</div>
-	  </div>
-	  <input type="text" class="input">${content}</input>
-		`;
-		$('.bg').append(htmlOfTxt);
-		$('.app').fadeIn(200);
-		const txt = document.getElementById('txtWindow');
-		txt.style.display = 'block';
-		dragWindow(txt.id, '.appheader');
-		$('#close').on('click', () => {
-			$('.app').fadeOut(200);
+		createWindow('õpetus.txt', content);
+	}
+	}
+
+	function createWindow(windowTitle, windowFileContent) {
+		const id = randomStringGen();
+		const uniqueClass = 'app ' + id;
+		const htmlOfTerminal = `
+	<div class="${uniqueClass}" id="${id}" style="display:none">
+	<div class="${id} appheader">
+	<div class="terminalheader border-lines"></div>
+	  <p class="title">${windowTitle}</p>
+	  <div class="buttons">
+		<div class="button" id="${id} max_min"><img src="/imgs/window-maximize.svg" alt=""></div>
+		<div class="button" id="${id} close"><img src="/imgs/x-thin.svg" alt=""></div>
+	</div>
+  </div>
+  <span>$</span> <input type="text" class="input">${windowFileContent}</input>
+	`;
+
+		$('.bg').append(htmlOfTerminal);
+		$(`#${id}`).fadeIn(200);
+		const appElement = document.getElementById(id);
+		appElement.style.display = 'block';
+		dragWindow(appElement.id, `.${id}`);
+		$(`#${id}\\ close`).on('click', () => {
+			$(`#${id}`).fadeOut(200);
 			setTimeout(() => {
-				$('.app').remove();
+				$(`#${id}`).remove();
 			}, 200);
 		});
-		$('#max_min').on('click', () => {
-			if ($('.app').hasClass('maximized')) {
-				$('.app').removeClass('maximized');
-				$('#max_min img').attr('src', '/imgs/window-maximize.svg');
-				$('.app').css({
+		$(`#${id}\\ max_min`).on('click', () => {
+			console.log('maximize');
+			if ($(`#${id}`).hasClass('maximized')) {
+				$(`#${id}`).removeClass('maximized');
+				$(`#${id}\\ max_min img`).attr('src', '/imgs/window-maximize.svg');
+				$(`#${id}`).css({
 					top: '50%',
 					left: '50%',
 					transform: 'translate(-50%, -50%)',
 				});
 			} else {
-				$('.app').addClass('maximized');
-				$('#max_min img').attr('src', '/imgs/window-restore.svg');
-				$('.app').css({
+				$(`#${id}`).addClass('maximized');
+				$(`#${id}\\ max_min img`).attr('src', '/imgs/window-restore.svg');
+				$(`#${id}`).css({
 					top: 0,
 					left: 0,
 					transform: 'none',
@@ -181,11 +190,6 @@ function openWindow(name, content) {
 			}
 		});
 	}
-	}
-}
-
-function changeWindowState() {
-
 }
 
 function dragWindow(elementId, handleId) {

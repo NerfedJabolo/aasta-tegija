@@ -77,6 +77,11 @@ html {
   z-index: 2;
 }
 
+.border-lines {
+  border-style: solid;
+  border-width: 2px;
+}
+
 .app {
   background-color: white;
   height: 500px;
@@ -136,6 +141,9 @@ html {
   flex-direction: row;
   justify-content: space-between;
   align-items: center;
+  border-style: solid;
+  border-width: 2px;
+
 }
 
 .button {
