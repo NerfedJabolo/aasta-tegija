@@ -32,7 +32,11 @@ app.get('/api/', (req, res) => {
 
 // Add parameter to /api
 app.get('/api/:page', (req, res) => {
-	res.json(files[0].page[req.params.page]);
+	const data = files[0].page[req.params.page];
+	if (!data) {
+		res.status(404).json({ error: 'Lehte pole!' });
+	}
+	res.json(data);
 });
 
 app.get('/', (req, res) => {
