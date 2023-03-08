@@ -14,7 +14,7 @@
     "title": "ÜLESANNE 2",
     "example": "<br>a = 5<br>b = 10<br>print(a * b) # prindib 50",
     "content": "Korruta muutujate a ja b väärtused omavahel ja prindi tulemus",
-    "vastus": "",
+    "vastus": "33",
     "punktid": 100
 
   },
