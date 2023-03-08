@@ -20,10 +20,10 @@ const files = [
 		name: 'python',
 		type: 'py',
 	},
-	{
+	/* {
 		name: 'terminal',
 		type: 'terminal',
-	},
+	}, */
 ];
 
 app.get('/api/', (req, res) => {
