@@ -1,17 +1,42 @@
 [
   {
-    "title": "Leht 1",
+    "title": "Teretulemast VOCOS-i!",
     "content": "Tere tulemast VOCOS-i!<br>VOCOS on tipptasemel ITA/ITS programmi ja operatsioonisüsteemi klasside parim näide. Siin süveneme arvutiteaduse keerukesse ja õpime, kuidas programmeerimiskeelte jõudu enda kasuks tööle panna.<br>Meie õpilased mitte ainult ei omanda põhjalikku arusaama viimastest tehnoloogilistest edusammudest, vaid arendavad ka olulisi oskusi tulevikuks. Osana meie õppekavast pakume praktilisi kogemusi erinevate programmeerimiskeelte ja -tööriistadega, andes meie õpilastele tehnoloogiatööstuses konkurentsieelise.<br>Üks olulisi tööriistu, mida meie ITS-i õpilased õpivad, on terminal - käsurea liides, mis pakub võimsaid võimalusi süsteemi haldamiseks ja arendamiseks. Seda tööriista kujutati kuulsates Matrixi filmides \"häkkimisstseenina\"."
   },
   {
-    "title": "WIP1",
+    "title": "ÜLESANNE 1",
+    "example": "print(\"Hello VOCO\") # prindib Hello VOCO",
     "content": "Prindi \"Tere maailm!\"",
-    "vastus": "Tere maailm!"
+    "vastus": "Tere maailm!",
+    "punktid": 100
   },
   {
-    "title": "WIP2",
-    "content": "WIP2",
-    "vastus": ""
+    "title": "ÜLESANNE 2",
+    "example": "a = 5\nb = 10\nprint(a * b) # prindib 50",
+    "content": "Korruta muutujate a ja b väärtused omavahel ja prindi tulemus",
+    "vastus": "",
+    "punktid": 100
 
+  },
+  {
+    "title": "ÜLESANNE 3",
+    "example": "fruitList = []\nfruitList.append(\"banaan\")\nprint(fruitList) # prindib ['banaan']",
+    "content": "Lisa sõna avokaado listi ja prindi listi sisu",
+    "vastus": "['avokaado']",
+    "punktid": 100
+  },
+  {
+    "title": "ÜLESANNE 4",
+    "example": "fruit = \"arbuus\"\nprint(fruit.capitalize()) # prindib \"Arbuus\"",
+    "content": "Pane sõna maasikas suure algustähega ja prindi see",
+    "vastus": "Maasikas",
+    "punktid": 100
+  },
+  {
+    "title": "ÜLESANNE 5",
+    "example": "fruit = \"tomat\"\nprint(fruit.upper()) # prindib \"TOMAT\"",
+    "content": "Pane sõna mango suurte tähtedega ja prindi see",
+    "vastus": "MANGO",
+    "punktid": 100
   }
 ]
