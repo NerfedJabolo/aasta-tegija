@@ -191,6 +191,9 @@ function openWindow(name) {
 		let currentPoints = 0;
 		let currentPossiblePoints;
 		let appended = false;
+		const correctAnswer = [];
+
+		let currentCorrectAnswer = new Map();
 		$(`#${id}\\ move_page_button`).on('click', async () => {
 			console.log('move page');
 			if (!appended) {
@@ -200,21 +203,26 @@ function openWindow(name) {
 			$(`#${id}\\ move_page_button`).attr('disabled', 'true');
 			$(`#${id}\\ incorrect_button`).attr('disabled', 'true');
 			$(`#${id}\\ correct_button`).attr('disabled', 'true');
+
+			$(`#${id}\\ incorrect_button`).off('click');
+			$(`#${id}\\ correct_button`).off('click');
 			const res = await fetch(`/api/${i++}`);
 			if (res.status === 404) {
-				alert('Jõudsid lõppu!');
+				alert(`Jõudsid lõppu! Sinu punktid on: ${currentPoints}/500 ;)`);
 				return;
 			}
 			const data = await res.json();
+			correctAnswer.push(data.vastus);
+			console.log(correctAnswer);
 			// #GTdzW\ text
 			currentPossiblePoints = data.punktid;
 			$(`#${id} p`).html(data.content + `<br><br>NÄIDE:<br><code>${data.example}</code><br><br><p id="${id} points_now">PUNKTID PRAEGU: ${currentPoints}</p><p id ="${id} points_from_exercise">PUNKTID SELLEST ÜLESANDEST: ${data.punktid}</p>`);
 			$(`#${id}\\ incorrect_button`).on('click', () => {
-				currentPossiblePoints -= 10;
-				if (currentPossiblePoints < 0) {
+				if (currentPossiblePoints <= 0) {
 					alert('Rohkem punkte ei saa maha minna!!');
 					return;
 				}
+				currentPossiblePoints -= 10;
 				$(`#${id}\\ points_from_exercise`).text(`PUNKTID SELLEST ÜLESANDEST: ${currentPossiblePoints}`);
 			});
 			$(`#${id}\\ correct_button`).on('click', () => {
@@ -225,10 +233,13 @@ function openWindow(name) {
 				$(`#${id}\\ move_page_button`).removeAttr('disabled');
 			});
 			$(`#${id}\\ show_answer`).on('click', () => {
-				$(`#${id}\\ incorrect_button`).removeAttr('disabled');
-				$(`#${id}\\ correct_button`).removeAttr('disabled');
-				alert(`Kas terminalis oli järgmine: ${data.vastus}`);
-
+				const answer = `Kas terminalis oli järgmine: ${correctAnswer[i - 2]}`;
+				if (!currentCorrectAnswer.has(answer)) {
+					$(`#${id}\\ incorrect_button`).removeAttr('disabled');
+					$(`#${id}\\ correct_button`).removeAttr('disabled');
+					alert(answer);
+					currentCorrectAnswer.set(answer, 1);
+				}
 			});
 			$('.title').text(data.title);
 			console.log(data);
