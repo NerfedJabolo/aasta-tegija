@@ -188,13 +188,18 @@ function openWindow(name) {
 				$(`#${id}`).remove();
 			}, 200);
 		});
+		let currentPoints = 0;
+		let currentPossiblePoints;
 		let appended = false;
 		$(`#${id}\\ move_page_button`).on('click', async () => {
 			console.log('move page');
 			if (!appended) {
-				$(`#${id}`).append(`<button id="${id} correct_button">Said õigesti?</button><button id="${id} incorrect_button">Said valesti?</button>`);
+				$(`#${id}`).append(`<button id="${id} correct_button">Said õigesti?</button><button id="${id} incorrect_button">Said valesti?</button><button id="${id} show_answer">Näita vastust</button>`);
 				appended = true;
 			}
+			$(`#${id}\\ move_page_button`).attr('disabled', 'true');
+			$(`#${id}\\ incorrect_button`).attr('disabled', 'true');
+			$(`#${id}\\ correct_button`).attr('disabled', 'true');
 			const res = await fetch(`/api/${i++}`);
 			if (res.status === 404) {
 				alert('Jõudsid lõppu!');
@@ -202,7 +207,29 @@ function openWindow(name) {
 			}
 			const data = await res.json();
 			// #GTdzW\ text
-			$(`#${id} p`).html(data.content + `<br><br>NÄIDE:<code>${data.example}</code>`);
+			currentPossiblePoints = data.punktid;
+			$(`#${id} p`).html(data.content + `<br><br>NÄIDE:<br><code>${data.example}</code><br><br><p id="${id} points_now">PUNKTID PRAEGU: ${currentPoints}</p><p id ="${id} points_from_exercise">PUNKTID SELLEST ÜLESANDEST: ${data.punktid}</p>`);
+			$(`#${id}\\ incorrect_button`).on('click', () => {
+				currentPossiblePoints -= 10;
+				if (currentPossiblePoints < 0) {
+					alert('Rohkem punkte ei saa maha minna!!');
+					return;
+				}
+				$(`#${id}\\ points_from_exercise`).text(`PUNKTID SELLEST ÜLESANDEST: ${currentPossiblePoints}`);
+			});
+			$(`#${id}\\ correct_button`).on('click', () => {
+				currentPoints += currentPossiblePoints;
+				$(`#${id}\\ points_now`).text(`PUNKTID PRAEGU: ${currentPoints}`);
+				$(`#${id}\\ incorrect_button`).attr('disabled', 'true');
+				$(`#${id}\\ correct_button`).attr('disabled', 'true');
+				$(`#${id}\\ move_page_button`).removeAttr('disabled');
+			});
+			$(`#${id}\\ show_answer`).on('click', () => {
+				$(`#${id}\\ incorrect_button`).removeAttr('disabled');
+				$(`#${id}\\ correct_button`).removeAttr('disabled');
+				alert(`Kas terminalis oli järgmine: ${data.vastus}`);
+
+			});
 			$('.title').text(data.title);
 			console.log(data);
 		});
