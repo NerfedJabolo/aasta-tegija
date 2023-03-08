@@ -5,14 +5,14 @@
   },
   {
     "title": "ÜLESANNE 1",
-    "example": "print(\"Hello VOCO\") # prindib Hello VOCO",
+    "example": "<br>print(\"Hello VOCO\") # prindib Hello VOCO",
     "content": "Prindi \"Tere maailm!\"",
     "vastus": "Tere maailm!",
     "punktid": 100
   },
   {
     "title": "ÜLESANNE 2",
-    "example": "a = 5<br>b = 10<br>print(a * b) # prindib 50",
+    "example": "<br>a = 5<br>b = 10<br>print(a * b) # prindib 50",
     "content": "Korruta muutujate a ja b väärtused omavahel ja prindi tulemus",
     "vastus": "",
     "punktid": 100
@@ -20,21 +20,21 @@
   },
   {
     "title": "ÜLESANNE 3",
-    "example": "fruitList = []<br>fruitList.append(\"banaan\")<br>print(fruitList) # prindib ['banaan']",
+    "example": "<br>fruitList = []<br>fruitList.append(\"banaan\")<br>print(fruitList) # prindib ['banaan']",
     "content": "Lisa sõna avokaado listi ja prindi listi sisu",
     "vastus": "['avokaado']",
     "punktid": 100
   },
   {
     "title": "ÜLESANNE 4",
-    "example": "fruit = \"arbuus\"<br>print(fruit.capitalize()) # prindib \"Arbuus\"",
+    "example": "<br>fruit = \"arbuus\"<br>print(fruit.capitalize()) # prindib \"Arbuus\"",
     "content": "Pane sõna maasikas suure algustähega ja prindi see",
     "vastus": "Maasikas",
     "punktid": 100
   },
   {
     "title": "ÜLESANNE 5",
-    "example": "fruit = \"tomat\"<br>print(fruit.upper()) # prindib \"TOMAT\"",
+    "example": "<br>fruit = \"tomat\"<br>print(fruit.upper()) # prindib \"TOMAT\"",
     "content": "Pane sõna mango suurte tähtedega ja prindi see",
     "vastus": "MANGO",
     "punktid": 100
