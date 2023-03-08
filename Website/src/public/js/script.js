@@ -152,6 +152,7 @@ function openWindow(name) {
 
 	async function createWindow({ windowTitle, windowFileContent, additonalHTML, tutorialPage } = {}) {
 		const id = randomStringGen();
+		let i = 1;
 		const response = await fetch('/api/0');
 		const data = await response.json();
 		const firstPageContent = data.content;
@@ -187,14 +188,22 @@ function openWindow(name) {
 				$(`#${id}`).remove();
 			}, 200);
 		});
-		let i = 1;
+		let appended = false;
 		$(`#${id}\\ move_page_button`).on('click', async () => {
 			console.log('move page');
-
+			if (!appended) {
+				$(`#${id}`).append(`<button id="${id} correct_button">Said õigesti?</button><button id="${id} incorrect_button">Said valesti?</button>`);
+				appended = true;
+			}
 			const res = await fetch(`/api/${i++}`);
+			if (res.status === 404) {
+				alert('Jõudsid lõppu!');
+				return;
+			}
 			const data = await res.json();
 			// #GTdzW\ text
-			$(`#${id} p`).text(data.content);
+			$(`#${id} p`).html(data.content + `<br><br>NÄIDE:<code>${data.example}</code>`);
+			$('.title').text(data.title);
 			console.log(data);
 		});
 		$(`#${id}\\ max_min`).on('click', () => {
