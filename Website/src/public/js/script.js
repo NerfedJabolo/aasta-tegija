@@ -193,7 +193,7 @@ function openWindow(name) {
 		let appended = false;
 		const correctAnswer = [];
 
-		let currentCorrectAnswer = new Map();
+		const currentCorrectAnswer = new Map();
 		$(`#${id}\\ move_page_button`).on('click', async () => {
 			console.log('move page');
 			if (!appended) {
