@@ -1,14 +1,22 @@
 const express = require('express');
 const path = require('path');
+const helmet = require('helmet');
 const fs = require('fs');
-
 const app = express();
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
 app.use(express.static(path.join(__dirname, 'public')));
+app.use(express.urlencoded({ extended: true }));
+app.use(helmet());
+app.disable('x-powered-by');
 const data = fs.readFileSync('src/text/opetus.json');
 const json = JSON.parse(data);
+const rateLimit = require('express-rate-limit');
 
+const limiter = rateLimit({
+	windowMs: 15 * 60 * 1000,
+	max: 100,
+});
 
 const files = [
 	{
@@ -39,7 +47,7 @@ app.get('/api/:page', (req, res) => {
 	res.json(data);
 });
 
-app.get('/', (req, res) => {
+app.get('/', limiter, (req, res) => {
 	res.render('pages/index', { files });
 });
 
