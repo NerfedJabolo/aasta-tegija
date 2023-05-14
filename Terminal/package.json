@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "blessed": "^0.1.81",
-    "tsup": "^6.6.3",
+    "tsup": "^6.7.0",
     "typescript": "*"
   },
   "devDependencies": {
